@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const API_URL = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:4000/api' : '/api');
 
 /**
  * Shared fetch wrapper helper.
@@ -7,7 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
  * @returns {Promise<any>} Response JSON data
  */
 export async function apiFetch(endpoint, options = {}) {
-  const token = localStorage.getItem('recall_token');
+  const token = localStorage.getItem('mindforge_token');
   
   const headers = {
     'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export async function apiFetch(endpoint, options = {}) {
 
   if (response.status === 401) {
     // Unauthorized: clear storage and redirect to login
-    localStorage.removeItem('recall_token');
+    localStorage.removeItem('mindforge_token');
     if (!window.location.pathname.endsWith('/login')) {
       window.location.href = '/login';
     }

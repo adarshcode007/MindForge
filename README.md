@@ -1,13 +1,13 @@
-# Recall — Weighted-Practice Quiz App
+# MindForge — Weighted-Practice Quiz App
 
-Recall is a personal, installable PWA for practicing multiple-choice questions across different decks. It features a weighted-random practice algorithm where questions answered wrong resurface more frequently.
+MindForge is a premium web app for practicing multiple-choice questions across different decks. It features a weighted-random practice algorithm where questions answered wrong resurface more frequently.
 
 ---
 
 ## Directory Structure
 
 - `backend/` — Node.js + Express API + Mongoose Models
-- `frontend/` — React 18 + Vite + Tailwind CSS + PWA Caches
+- `frontend/` — React 18 + Vite + Tailwind CSS
 - `ProjectDeatils.md` — Original system specifications
 
 ---
@@ -33,16 +33,26 @@ npm install
 
 #### Frontend Setup (`frontend/`):
 1. Copy `frontend/.env.example` to `frontend/.env`.
-2. Keep `VITE_API_URL` matching the backend URL (`http://localhost:4000`).
+2. Keep `VITE_API_URL` matching the backend URL (`http://localhost:4000/api`).
 
 ---
 
 ## Launching the Application
 
+### Local Development
 Start both the backend server and frontend development server concurrently:
 ```bash
 npm run dev
 ```
 
 - **Frontend client**: [http://localhost:5173](http://localhost:5173)
-- **Backend API**: [http://localhost:4000](http://localhost:4000)
+- **Backend API**: [http://localhost:4000/api](http://localhost:4000/api)
+
+### Production Deployment
+Since the project is structured as a unified monorepo, you can deploy both backend and frontend on a single server (like Render, Railway, or VPS).
+
+1. Connect this repo to Render or Railway.
+2. Configure environment variables (`MONGODB_URI`, `JWT_SECRET`, `APP_PASSCODE`).
+3. Set build and start options:
+   - **Build Command:** `npm run build`
+   - **Start Command:** `npm start`

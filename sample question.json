@@ -1,0 +1,262 @@
+[
+  {
+    "question": "What does SQL stand for?",
+    "options": [
+      "Structured Query Language",
+      "Structured Question Language",
+      "Simple Query Language",
+      "Strong Query Language"
+    ],
+    "answer": 0,
+    "description": "SQL stands for Structured Query Language. It is the standard language for relational database management systems.",
+    "difficulty": "easy",
+    "tags": ["sql", "basics"]
+  },
+  {
+    "question": "Which SQL statement is used to extract data from a database?",
+    "options": [
+      "GET",
+      "EXTRACT",
+      "SELECT",
+      "OPEN"
+    ],
+    "answer": 2,
+    "description": "The SELECT statement is used to query and retrieve data from one or more tables in a database.",
+    "difficulty": "easy",
+    "tags": ["sql", "basics", "queries"]
+  },
+  {
+    "question": "Which SQL keyword is used to sort the result-set in descending order?",
+    "options": [
+      "SORT DESC",
+      "ORDER BY DESC",
+      "DESC",
+      "SORT BY DESC"
+    ],
+    "answer": 2,
+    "description": "To sort the result-set in descending order, you use the DESC keyword immediately following the column name in the ORDER BY clause.",
+    "difficulty": "easy",
+    "tags": ["sql", "sorting", "basics"]
+  },
+  {
+    "question": "What is the difference between a WHERE clause and a HAVING clause?",
+    "options": [
+      "WHERE is used to filter rows before grouping; HAVING is used to filter groups after grouping.",
+      "HAVING is used to filter rows before grouping; WHERE is used to filter groups after grouping.",
+      "They are identical and can be used interchangeably.",
+      "WHERE can only be used with SELECT statements; HAVING can be used with any DML statement."
+    ],
+    "answer": 0,
+    "description": "The WHERE clause filters individual records before any grouping (GROUP BY) takes place. The HAVING clause filters grouped records (aggregation aggregates) after the GROUP BY clause.",
+    "difficulty": "medium",
+    "tags": ["sql", "filtering", "aggregations"]
+  },
+  {
+    "question": "Which SQL join returns all records when there is a match in either left or right table records?",
+    "options": [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "FULL OUTER JOIN"
+    ],
+    "answer": 3,
+    "description": "A FULL OUTER JOIN returns all rows from both tables, matching columns where possible, and inserting NULLs for missing matches on either side.",
+    "difficulty": "medium",
+    "tags": ["sql", "joins"]
+  },
+  {
+    "question": "What is the purpose of the UNIQUE constraint in SQL?",
+    "options": [
+      "It ensures that all values in a column are different.",
+      "It ensures that a column cannot have a NULL value.",
+      "It automatically creates a primary key.",
+      "It allows duplicate values but ensures they are sorted."
+    ],
+    "answer": 0,
+    "description": "The UNIQUE constraint ensures that all values in a column or a group of columns are distinct, preventing duplicate entries while still allowing NULL values (unlike PRIMARY KEY).",
+    "difficulty": "easy",
+    "tags": ["sql", "constraints"]
+  },
+  {
+    "question": "What does a SELF JOIN do in SQL?",
+    "options": [
+      "It joins a table to itself as if it were two separate tables.",
+      "It automatically links a primary key to a foreign key in the same query.",
+      "It merges two identical schemas.",
+      "It updates columns using values from the same row."
+    ],
+    "answer": 0,
+    "description": "A SELF JOIN is a regular join where a table is joined with itself. This is useful for querying hierarchical data within a single table (like employees and their managers).",
+    "difficulty": "medium",
+    "tags": ["sql", "joins"]
+  },
+  {
+    "question": "Which index is created automatically when you define a PRIMARY KEY constraint on a table?",
+    "options": [
+      "Non-Clustered Index",
+      "Clustered Index",
+      "Unique Index only",
+      "Filtered Index"
+    ],
+    "answer": 1,
+    "description": "In most relational database systems (like SQL Server and MySQL InnoDB), creating a PRIMARY KEY automatically creates a Clustered Index on that column, which physically orders the data rows in the table.",
+    "difficulty": "medium",
+    "tags": ["sql", "indexing", "performance"]
+  },
+  {
+    "question": "What is the main advantage of using a Common Table Expression (CTE) over a subquery?",
+    "options": [
+      "It is always faster to execute.",
+      "It improves readability and can be referenced recursively.",
+      "It automatically caches result sets in memory.",
+      "It doesn't require SELECT permission on underlying tables."
+    ],
+    "answer": 1,
+    "description": "CTEs improve SQL query readability and maintenance by breaking complex queries into named blocks. Furthermore, CTEs can be recursive, allowing you to query hierarchical trees.",
+    "difficulty": "medium",
+    "tags": ["sql", "ctes", "readability"]
+  },
+  {
+    "question": "Which of the following describes the 'Phantom Read' anomaly in database transactions?",
+    "options": [
+      "A transaction reads data that has been modified by another transaction but not yet committed.",
+      "A transaction re-reads a row and finds different data because another transaction modified and committed it.",
+      "A transaction runs a query returning a set of rows, and upon re-running the same query, finds new rows inserted by another committed transaction.",
+      "A transaction fails to read a row because another transaction has acquired an exclusive lock on it."
+    ],
+    "answer": 2,
+    "description": "A Phantom Read occurs when a transaction executes a query to retrieve a range of rows, and a concurrent transaction inserts new rows into that range and commits, causing the original transaction to see new 'phantom' rows upon re-execution.",
+    "difficulty": "hard",
+    "tags": ["sql", "transactions", "isolation"]
+  },
+  {
+    "question": "Which SQL window function is used to assign a unique sequential integer to rows, starting at 1, without skipping numbers for ties?",
+    "options": [
+      "RANK()",
+      "DENSE_RANK()",
+      "ROW_NUMBER()",
+      "NTILE()"
+    ],
+    "answer": 2,
+    "description": "ROW_NUMBER() assigns a unique sequential number to every row inside the partition, regardless of duplicate values in the ordering columns.",
+    "difficulty": "medium",
+    "tags": ["sql", "window-functions"]
+  },
+  {
+    "question": "How does DENSE_RANK() differ from RANK() in SQL window functions?",
+    "options": [
+      "RANK() leaves gaps in the ranking sequence after ties, whereas DENSE_RANK() does not leave gaps.",
+      "DENSE_RANK() leaves gaps in the ranking sequence after ties, whereas RANK() does not leave gaps.",
+      "RANK() only ranks unique values; DENSE_RANK() ranks duplicates as well.",
+      "They are identical window function aliases."
+    ],
+    "answer": 0,
+    "description": "RANK() leaves gaps in the rank sequence if there are duplicate values (e.g. 1, 2, 2, 4). DENSE_RANK() does not leave gaps (e.g. 1, 2, 2, 3).",
+    "difficulty": "medium",
+    "tags": ["sql", "window-functions"]
+  },
+  {
+    "question": "What is the purpose of the COALESCE() function in SQL?",
+    "options": [
+      "It merges two strings together.",
+      "It returns the first non-null expression in its argument list.",
+      "It calculates the average of non-null values.",
+      "It splits a column into multiple sub-columns."
+    ],
+    "answer": 1,
+    "description": "COALESCE() evaluates the arguments in order and returns the current value of the first expression that initially does not evaluate to NULL.",
+    "difficulty": "easy",
+    "tags": ["sql", "functions"]
+  },
+  {
+    "question": "In SQL transactions, which isolation level completely prevents Dirty Reads, Non-Repeatable Reads, and Phantom Reads?",
+    "options": [
+      "READ COMMITTED",
+      "READ UNCOMMITTED",
+      "REPEATABLE READ",
+      "SERIALIZABLE"
+    ],
+    "answer": 3,
+    "description": "SERIALIZABLE is the highest transaction isolation level. It prevents all read anomalies by acquiring range locks and locking the dataset so transactions execute as if sequentially ordered.",
+    "difficulty": "hard",
+    "tags": ["sql", "transactions", "isolation"]
+  },
+  {
+    "question": "What does the EXPLAIN keyword do when prepended to a SQL query?",
+    "options": [
+      "It prints a text explanation of the query's result columns.",
+      "It returns the database engine's query execution plan, showing indexes used and execution costs.",
+      "It corrects syntax errors in the query automatically.",
+      "It translates the SQL code into readable plain English."
+    ],
+    "answer": 1,
+    "description": "EXPLAIN displays the execution plan chosen by the query optimizer. It details tables scanned, index usage, join types, and projected costs to help with query tuning.",
+    "difficulty": "medium",
+    "tags": ["sql", "performance", "optimization"]
+  },
+  {
+    "question": "Which of the following is true about a FOREIGN KEY constraint?",
+    "options": [
+      "It must reference a column that has a UNIQUE or PRIMARY KEY constraint in the referenced table.",
+      "It can only reference the primary key of another table, never a unique key.",
+      "It forces the referenced column to have the same name as the foreign key column.",
+      "It automatically deletes rows in the parent table when the child row is deleted."
+    ],
+    "answer": 0,
+    "description": "A FOREIGN KEY must reference a candidate key (either a PRIMARY KEY or a column with a UNIQUE constraint) in the parent table to ensure referential integrity.",
+    "difficulty": "medium",
+    "tags": ["sql", "constraints", "basics"]
+  },
+  {
+    "question": "What is the function of the UNION operator in SQL?",
+    "options": [
+      "It combines the result-set of two or more SELECT statements, returning only distinct values.",
+      "It joins columns from two tables horizontally based on a key.",
+      "It combines the result-set of two or more SELECT statements, including all duplicate values.",
+      "It intersects two datasets and returns overlapping rows."
+    ],
+    "answer": 0,
+    "description": "The UNION operator combines the result sets of two or more SELECT statements, automatically removing duplicate rows. To keep duplicate rows, you use UNION ALL.",
+    "difficulty": "easy",
+    "tags": ["sql", "basics", "operators"]
+  },
+  {
+    "question": "How does a clustered index differ from a non-clustered index?",
+    "options": [
+      "A clustered index physical orders the rows in the table; a non-clustered index stores index pointers separately from the data.",
+      "A non-clustered index physical orders the rows in the table; a clustered index stores index pointers separately from the data.",
+      "Clustered indexes can have duplicate values; non-clustered indexes must be unique.",
+      "A table can have multiple clustered indexes, but only one non-clustered index."
+    ],
+    "answer": 0,
+    "description": "A table can have only one clustered index because the data rows themselves are stored in that specific physical order. A non-clustered index is stored in a separate structure with pointers back to the actual data rows.",
+    "difficulty": "hard",
+    "tags": ["sql", "indexing", "performance"]
+  },
+  {
+    "question": "Which clause is used in combination with window functions to define the subsets of rows the function is applied to?",
+    "options": [
+      "GROUP BY",
+      "ORDER BY",
+      "PARTITION BY",
+      "DIVIDE BY"
+    ],
+    "answer": 2,
+    "description": "The PARTITION BY clause divides the query result set into partitions. The window function is applied to each partition separately and computation restarts for each partition.",
+    "difficulty": "medium",
+    "tags": ["sql", "window-functions"]
+  },
+  {
+    "question": "What happens when you execute a DELETE statement without a WHERE clause?",
+    "options": [
+      "It deletes all rows in the table.",
+      "It throws a syntax error.",
+      "It deletes the table schema from the database.",
+      "It deletes only the first row in the table."
+    ],
+    "answer": 0,
+    "description": "Executing a DELETE statement without a WHERE clause will delete all rows from the specified table, but the table structure (schema, columns, indexes) will remain intact.",
+    "difficulty": "easy",
+    "tags": ["sql", "basics"]
+  }
+]

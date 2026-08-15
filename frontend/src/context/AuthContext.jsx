@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('recall_token');
+    const storedToken = localStorage.getItem('mindforge_token');
     if (storedToken) {
       setToken(storedToken);
       setIsAuthenticated(true);
@@ -17,13 +17,13 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = (newToken) => {
-    localStorage.setItem('recall_token', newToken);
+    localStorage.setItem('mindforge_token', newToken);
     setToken(newToken);
     setIsAuthenticated(true);
   };
 
   const logout = () => {
-    localStorage.removeItem('recall_token');
+    localStorage.removeItem('mindforge_token');
     setToken(null);
     setIsAuthenticated(false);
   };

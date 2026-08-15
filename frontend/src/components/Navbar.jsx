@@ -22,7 +22,7 @@ export default function Navbar() {
       {/* Desktop Top Navbar */}
       <nav className="glass hidden md:flex sticky top-0 z-50 w-full px-8 py-4 shadow-lg justify-between items-center border-b border-darkBorder">
         <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-500 hover:opacity-90 font-display">
-          RECALL
+          MINDFORGE
         </Link>
         
         <div className="flex items-center gap-3">

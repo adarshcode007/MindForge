@@ -11,6 +11,8 @@
     "dev:frontend": "npm run dev --workspace=frontend",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "install:all": "npm install",
+    "build": "npm run build --workspace=frontend",
+    "start": "node backend/src/server.js",
     "test": "npm run test --workspace=backend"
   },
   "devDependencies": {

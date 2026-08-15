@@ -46,7 +46,7 @@ export default function Login() {
             <KeyRound size={32} className="animate-pulse" />
           </div>
           <h1 className="text-3xl font-extrabold text-slate-100 tracking-tight text-center font-display">
-            Recall Archive
+            MindForge Archive
           </h1>
           <p className="text-slate-400 text-xs sm:text-sm text-center mt-2">
             Enter your passcode to unlock weighted-practice decks.
