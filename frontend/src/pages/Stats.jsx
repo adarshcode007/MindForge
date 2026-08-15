@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../lib/api';
-import { ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { Award, Flame, AlertTriangle, Layers, TrendingUp, Loader2 } from 'lucide-react';
 
 export default function Stats() {
@@ -75,18 +75,18 @@ export default function Stats() {
 
   if (loading) {
     return (
-      <div class="flex flex-col items-center justify-center min-h-[60vh]">
-        <Loader2 size={40} class="text-indigo-500 animate-spin" />
-        <span class="text-slate-400 mt-4 font-medium">Loading stats...</span>
+      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <Loader2 size={40} className="text-blue-500 animate-spin" />
+        <span className="text-slate-400 mt-4 font-medium">Loading stats...</span>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div class="max-w-4xl mx-auto px-4 py-8 animate-fade-in">
-        <div class="bg-red-950/20 border border-red-900/30 text-red-400 px-4 py-3 rounded-lg flex items-center gap-2">
-          <AlertTriangle size={18} />
+      <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in pb-24">
+        <div className="bg-red-950/20 border border-red-900/30 text-red-400 px-4 py-3 rounded-lg flex items-center gap-2 text-sm">
+          <AlertTriangle size={18} className="flex-shrink-0" />
           <span>{error}</span>
         </div>
       </div>
@@ -96,112 +96,112 @@ export default function Stats() {
   const accuracyPercent = overview ? Math.round(overview.overallAccuracy * 100) : 0;
 
   return (
-    <div class="max-w-6xl mx-auto px-4 py-8 animate-fade-in space-y-8">
+    <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in space-y-8 pb-24">
       {/* Header */}
       <div>
-        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-slate-350 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-slate-205 to-slate-350 tracking-tight font-display">
           Performance Dashboard
         </h1>
-        <p class="text-slate-400 mt-2">
+        <p className="text-slate-400 mt-2 text-xs sm:text-sm">
           Monitor your study streak, deck accuracy, and flags.
         </p>
       </div>
 
       {/* Summary Cards Row */}
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Total Questions */}
-        <div class="glass p-6 rounded-2xl border border-slate-700/50 flex items-center gap-4">
-          <div class="p-3.5 bg-indigo-650/20 border border-indigo-500/25 rounded-xl text-indigo-400">
+        <div className="glass p-5 rounded-2xl border border-darkBorder flex items-center gap-4">
+          <div className="p-3.5 bg-blue-600/10 border border-blue-500/20 rounded-xl text-blue-455">
             <Layers size={24} />
           </div>
           <div>
-            <div class="text-3xl font-extrabold text-slate-100">{overview?.totalQuestions || 0}</div>
-            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Questions Pool</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-slate-100 font-display">{overview?.totalQuestions || 0}</div>
+            <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mt-1">Questions Pool</div>
           </div>
         </div>
 
         {/* Overall Accuracy */}
-        <div class="glass p-6 rounded-2xl border border-slate-700/50 flex items-center gap-4">
-          <div class="p-3.5 bg-emerald-650/20 border border-emerald-500/25 rounded-xl text-emerald-400">
+        <div className="glass p-5 rounded-2xl border border-darkBorder flex items-center gap-4">
+          <div className="p-3.5 bg-emerald-600/10 border border-emerald-500/20 rounded-xl text-emerald-450">
             <Award size={24} />
           </div>
           <div>
-            <div class="text-3xl font-extrabold text-slate-100">{accuracyPercent}%</div>
-            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Overall Accuracy</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-slate-100 font-display">{accuracyPercent}%</div>
+            <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mt-1">Overall Accuracy</div>
           </div>
         </div>
 
         {/* Current Streak */}
-        <div class="glass p-6 rounded-2xl border border-slate-700/50 flex items-center gap-4">
-          <div class="p-3.5 bg-amber-650/20 border border-amber-500/25 rounded-xl text-amber-500">
-            <Flame size={24} class={currentStreak > 0 ? 'animate-pulse' : ''} />
+        <div className="glass p-5 rounded-2xl border border-darkBorder flex items-center gap-4">
+          <div className="p-3.5 bg-amber-555/10 border border-amber-550/20 rounded-xl text-amber-500">
+            <Flame size={24} className={currentStreak > 0 ? 'animate-pulse' : ''} />
           </div>
           <div>
-            <div class="text-3xl font-extrabold text-slate-100">{currentStreak} {currentStreak === 1 ? 'day' : 'days'}</div>
-            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Practice Streak</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-slate-100 font-display">{currentStreak} {currentStreak === 1 ? 'day' : 'days'}</div>
+            <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mt-1">Practice Streak</div>
           </div>
         </div>
 
         {/* Active Leeches */}
-        <div class="glass p-6 rounded-2xl border border-slate-700/50 flex items-center gap-4">
-          <div class="p-3.5 bg-rose-650/20 border border-rose-500/25 rounded-xl text-rose-450">
+        <div className="glass p-5 rounded-2xl border border-darkBorder flex items-center gap-4">
+          <div className="p-3.5 bg-rose-600/10 border border-rose-500/20 rounded-xl text-rose-450">
             <AlertTriangle size={24} />
           </div>
           <div>
-            <div class="text-3xl font-extrabold text-slate-100">{overview?.leeches?.length || 0}</div>
-            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Leech Cards</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-slate-100 font-display">{overview?.leeches?.length || 0}</div>
+            <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mt-1">Leech Cards</div>
           </div>
         </div>
       </div>
 
       {/* Analytics Charts Grid */}
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* Trend Accuracy Line Chart */}
-        <div class="glass p-6 rounded-3xl border border-slate-700/50 space-y-4">
-          <h3 class="text-lg font-bold text-slate-200 flex items-center gap-2">
-            <TrendingUp size={18} class="text-indigo-400" />
+        <div className="glass p-5 sm:p-6 rounded-3xl border border-darkBorder space-y-4">
+          <h3 className="text-base sm:text-lg font-bold text-slate-200 flex items-center gap-2 font-display">
+            <TrendingUp size={18} className="text-blue-400" />
             Accuracy (Last 14 Days)
           </h3>
-          <div class="h-80 w-full pt-4">
+          <div className="h-64 sm:h-80 w-full pt-4">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={last14DaysData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-                <XAxis dataKey="dateLabel" stroke="#94a3b8" fontSize={11} tickLine={false} />
-                <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 1]} tickFormatter={(v) => `${Math.round(v * 100)}%`} tickLine={false} />
+              <LineChart data={last14DaysData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(59,130,246,0.03)" />
+                <XAxis dataKey="dateLabel" stroke="#475569" fontSize={9} tickLine={false} />
+                <YAxis stroke="#475569" fontSize={9} domain={[0, 1]} tickFormatter={(v) => `${Math.round(v * 100)}%`} tickLine={false} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#0c0f1d', border: '1px solid rgba(59,130,246,0.15)', borderRadius: '12px' }}
                   labelStyle={{ color: '#f1f5f9', fontWeight: 'bold' }}
                   formatter={(value) => [`${Math.round(value * 100)}%`, 'Accuracy']}
                 />
-                <Line type="monotone" dataKey="accuracy" stroke="#6366f1" strokeWidth={3} dot={{ r: 4, strokeWidth: 1 }} activeDot={{ r: 6 }} />
+                <Line type="monotone" dataKey="accuracy" stroke="#3b82f6" strokeWidth={2.5} dot={{ r: 3, strokeWidth: 1, fill: '#05070f' }} activeDot={{ r: 5 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Weakest Tags Bar Chart */}
-        <div class="glass p-6 rounded-3xl border border-slate-700/50 space-y-4">
-          <h3 class="text-lg font-bold text-slate-200 flex items-center gap-2">
-            <AlertTriangle size={18} class="text-amber-400" />
+        <div className="glass p-5 sm:p-6 rounded-3xl border border-darkBorder space-y-4">
+          <h3 className="text-base sm:text-lg font-bold text-slate-200 flex items-center gap-2 font-display">
+            <AlertTriangle size={18} className="text-amber-450" />
             Weakest Tags (Lowest Accuracy)
           </h3>
           {formattedWeakestTags.length === 0 ? (
-            <div class="h-80 flex items-center justify-center text-slate-400 text-sm">
+            <div className="h-64 sm:h-80 flex items-center justify-center text-slate-500 text-xs sm:text-sm">
               Practice more questions to populate tag metrics.
             </div>
           ) : (
-            <div class="h-80 w-full pt-4">
+            <div className="h-64 sm:h-80 w-full pt-4">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={formattedWeakestTags} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-                  <XAxis dataKey="tag" stroke="#94a3b8" fontSize={11} tickLine={false} />
-                  <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 100]} tickFormatter={(v) => `${v}%`} tickLine={false} />
+                <BarChart data={formattedWeakestTags} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(59,130,246,0.03)" />
+                  <XAxis dataKey="tag" stroke="#475569" fontSize={9} tickLine={false} />
+                  <YAxis stroke="#475569" fontSize={9} domain={[0, 100]} tickFormatter={(v) => `${v}%`} tickLine={false} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                    contentStyle={{ backgroundColor: '#0c0f1d', border: '1px solid rgba(59,130,246,0.15)', borderRadius: '12px' }}
                     formatter={(value, name, props) => [`${value}% (${props.payload.attempts} attempts)`, 'Accuracy']}
                   />
-                  <Bar dataKey="accuracy" fill="#ef4444" radius={[6, 6, 0, 0]} maxBarSize={45} />
+                  <Bar dataKey="accuracy" fill="#e11d48" radius={[4, 4, 0, 0]} maxBarSize={35} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -210,38 +210,38 @@ export default function Stats() {
       </div>
 
       {/* Leech Relearning List */}
-      <div class="glass p-6 rounded-3xl border border-slate-700/50 space-y-4">
-        <h3 class="text-lg font-bold text-slate-200 flex items-center gap-2">
-          <AlertTriangle size={18} class="text-rose-500" />
+      <div className="glass p-5 sm:p-6 rounded-3xl border border-darkBorder space-y-4">
+        <h3 className="text-base sm:text-lg font-bold text-slate-200 flex items-center gap-2 font-display">
+          <AlertTriangle size={18} className="text-rose-500" />
           Needs Re-learning (Leeched Questions)
         </h3>
-        <p class="text-slate-400 text-xs mt-1">
+        <p className="text-slate-455 text-xs mt-1">
           These questions have been answered wrong consecutively 4+ times. Click a row to start a focused practice session.
         </p>
 
         {overview?.leeches?.length === 0 ? (
-          <div class="p-8 text-center text-slate-400 text-sm border border-dashed border-slate-800 rounded-2xl">
+          <div className="p-8 text-center text-slate-505 text-xs sm:text-sm border border-dashed border-slate-800 rounded-2xl">
             Clean slate! No questions flagged as leeches right now.
           </div>
         ) : (
-          <div class="overflow-hidden border border-slate-800 rounded-2xl bg-slate-900/20">
-            <div class="max-h-80 overflow-y-auto no-scrollbar divide-y divide-slate-800">
+          <div className="overflow-hidden border border-slate-850 rounded-2xl bg-slate-900/10">
+            <div className="max-h-80 overflow-y-auto no-scrollbar divide-y divide-slate-850">
               {overview?.leeches.map((leech) => (
                 <div
                   key={leech.id}
                   onClick={() => navigate('/practice', { state: { preSelectedDeckId: leech.deckId || leech.deckSlug } })}
-                  class="p-4 hover:bg-slate-800/40 cursor-pointer flex justify-between items-center gap-6 transition-all duration-150"
+                  className="p-4 hover:bg-slate-900/30 cursor-pointer flex flex-col sm:flex-row justify-between sm:items-center gap-3 sm:gap-6 transition-all duration-150"
                 >
-                  <div class="space-y-1.5 flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-slate-250 truncate break-words">
+                  <div className="space-y-1.5 flex-1 min-w-0">
+                    <p className="text-xs sm:text-sm font-semibold text-slate-200 truncate break-words">
                       {leech.question}
                     </p>
-                    <span class="inline-block bg-slate-900 border border-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-400 font-bold uppercase">
+                    <span className="inline-block bg-slate-950 border border-slate-850 px-2 py-0.5 rounded text-[10px] text-slate-500 font-bold uppercase font-mono tracking-wider">
                       Deck: {leech.deckSlug}
                     </span>
                   </div>
-                  <div class="text-right flex-shrink-0">
-                    <span class="inline-block bg-rose-950/20 text-rose-400 border border-rose-900/30 px-2.5 py-1 rounded-lg text-xs font-semibold">
+                  <div className="text-left sm:text-right flex-shrink-0">
+                    <span className="inline-block bg-rose-950/20 text-rose-455 border border-rose-900/25 px-2.5 py-1 rounded-lg text-xs font-semibold">
                       {leech.consecutiveWrong} wrong in a row
                     </span>
                   </div>

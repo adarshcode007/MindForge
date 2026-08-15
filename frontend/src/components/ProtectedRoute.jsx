@@ -7,10 +7,10 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div class="min-h-screen bg-darkBg flex items-center justify-center">
-        <div class="relative w-16 h-16">
-          <div class="absolute inset-0 rounded-full border-4 border-indigo-500/20"></div>
-          <div class="absolute inset-0 rounded-full border-4 border-t-indigo-500 animate-spin"></div>
+      <div className="min-h-screen bg-darkBg flex items-center justify-center">
+        <div className="relative w-16 h-16">
+          <div className="absolute inset-0 rounded-full border-4 border-indigo-500/20"></div>
+          <div className="absolute inset-0 rounded-full border-4 border-t-indigo-500 animate-spin"></div>
         </div>
       </div>
     );

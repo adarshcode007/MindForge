@@ -167,56 +167,56 @@ export default function PracticeSetup() {
 
   if (loading) {
     return (
-      <div class="flex flex-col items-center justify-center min-h-[60vh]">
-        <Loader2 size={40} class="text-indigo-500 animate-spin" />
-        <span class="text-slate-400 mt-4 font-medium">Loading setup...</span>
+      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <Loader2 size={40} className="text-blue-500 animate-spin" />
+        <span className="text-slate-400 mt-4 font-medium">Loading setup...</span>
       </div>
     );
   }
 
   return (
-    <div class="max-w-4xl mx-auto px-4 py-8 animate-fade-in">
-      <div class="mb-10">
-        <h1 class="text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-slate-350">
+    <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in pb-24">
+      <div className="mb-10">
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-slate-205 to-slate-350 font-display">
           Practice Setup
         </h1>
-        <p class="text-slate-400 mt-2">
+        <p className="text-slate-400 mt-2 text-xs sm:text-sm">
           Configure your review session limits, focus, and decks.
         </p>
       </div>
 
       {error && (
-        <div class="bg-red-950/20 border border-red-900/30 text-red-400 px-4 py-3 rounded-lg mb-8 animate-slide-up">
+        <div className="bg-red-950/20 border border-red-900/30 text-red-400 px-4 py-3 rounded-lg mb-8 animate-slide-up text-xs sm:text-sm">
           {error}
         </div>
       )}
 
-      <div class="space-y-8">
+      <div className="space-y-8">
         {/* Decks Selection */}
-        <div class="glass p-6 rounded-2xl border border-slate-700/50 space-y-4">
-          <h3 class="text-lg font-bold text-slate-200">Decks to Include</h3>
+        <div className="glass p-6 rounded-2xl border border-darkBorder space-y-4">
+          <h3 className="text-base sm:text-lg font-bold text-slate-200 font-display">Decks to Include</h3>
           {decks.length === 0 ? (
-            <p class="text-slate-400 text-sm">No decks available. Create one first.</p>
+            <p className="text-slate-400 text-sm">No decks available. Create one first.</p>
           ) : (
-            <div class="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2.5">
               {decks.map(deck => {
                 const isSelected = selectedDeckIds.includes(deck.id);
                 return (
                   <button
                     key={deck.id}
                     onClick={() => toggleDeck(deck.id)}
-                    class={`px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 flex items-center gap-2 ${
+                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-2 ${
                       isSelected
-                        ? 'bg-indigo-650/30 text-indigo-300 border-indigo-500/40 shadow-inner'
-                        : 'bg-slate-900/40 text-slate-400 border-slate-800 hover:text-slate-200 hover:bg-slate-850/50'
+                        ? 'bg-blue-600/10 text-blue-400 border-blue-500/25 shadow-md shadow-blue-950/15'
+                        : 'bg-slate-900/40 text-slate-400 border-transparent hover:text-slate-200 hover:bg-slate-850/50'
                     }`}
                   >
                     <span
-                      class="w-2.5 h-2.5 rounded-full"
+                      className="w-2.5 h-2.5 rounded-full"
                       style={{ backgroundColor: deck.color }}
                     ></span>
                     {deck.name}
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-900/80 text-slate-500 font-semibold border border-slate-800">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-900/80 text-slate-500 font-semibold border border-slate-800">
                       {deck.questionCount}
                     </span>
                   </button>
@@ -228,21 +228,21 @@ export default function PracticeSetup() {
 
         {/* Tags Selection */}
         {availableTags.length > 0 && (
-          <div class="glass p-6 rounded-2xl border border-slate-700/50 space-y-4 animate-slide-up">
-            <h3 class="text-lg font-bold text-slate-200">
-              Filter by Tags <span class="text-xs font-normal text-slate-450 ml-2">(Optional)</span>
+          <div className="glass p-6 rounded-2xl border border-darkBorder space-y-4 animate-slide-up">
+            <h3 className="text-base sm:text-lg font-bold text-slate-200 font-display">
+              Filter by Tags <span className="text-xs font-normal text-slate-450 ml-2">(Optional)</span>
             </h3>
-            <div class="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {availableTags.map(tag => {
                 const isSelected = selectedTags.includes(tag);
                 return (
                   <button
                     key={tag}
                     onClick={() => toggleTag(tag)}
-                    class={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all duration-205 ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all duration-200 ${
                       isSelected
-                        ? 'bg-slate-800 text-indigo-300 border-indigo-500/30'
-                        : 'bg-slate-900/30 text-slate-450 border-slate-800/80 hover:text-slate-300 hover:bg-slate-850/30'
+                        ? 'bg-slate-900 text-blue-400 border-blue-500/20'
+                        : 'bg-slate-900/30 text-slate-450 border-transparent hover:text-slate-300 hover:bg-slate-850/30'
                     }`}
                   >
                     #{tag}
@@ -254,9 +254,9 @@ export default function PracticeSetup() {
         )}
 
         {/* Mode Selection */}
-        <div class="space-y-4">
-          <h3 class="text-lg font-bold text-slate-200">Practice Mode</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-4">
+          <h3 className="text-base sm:text-lg font-bold text-slate-200 font-display">Practice Mode</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {MODES.map(mode => {
               const Icon = mode.icon;
               const isSelected = selectedMode === mode.id;
@@ -264,18 +264,18 @@ export default function PracticeSetup() {
                 <div
                   key={mode.id}
                   onClick={() => setSelectedMode(mode.id)}
-                  class={`glass glass-hover p-5 rounded-2xl cursor-pointer border flex items-start gap-4 transition-all duration-250 ${
+                  className={`glass glass-hover p-5 rounded-2xl cursor-pointer border flex items-start gap-4 transition-all duration-200 ${
                     isSelected
-                      ? 'border-indigo-550/40 bg-indigo-950/10 shadow-lg shadow-indigo-950/20'
+                      ? 'border-blue-500/30 bg-blue-950/5 shadow-md shadow-blue-950/15'
                       : 'border-slate-800/80'
                   }`}
                 >
-                  <div class={`p-3 rounded-xl border ${mode.iconColor}`}>
+                  <div className={`p-3 rounded-xl border ${mode.iconColor}`}>
                     <Icon size={20} />
                   </div>
                   <div>
-                    <h4 class="font-bold text-slate-200">{mode.name}</h4>
-                    <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                    <h4 className="font-bold text-slate-250 text-sm sm:text-base">{mode.name}</h4>
+                    <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
                       {mode.description}
                     </p>
                   </div>
@@ -289,11 +289,11 @@ export default function PracticeSetup() {
         <button
           onClick={handleStartSession}
           disabled={fetchingPool || selectedDeckIds.length === 0}
-          class="w-full bg-gradient-to-r from-indigo-600 to-purple-650 hover:from-indigo-550 hover:to-purple-550 text-white font-bold py-4 rounded-2xl shadow-xl transition-all duration-200 disabled:opacity-50 flex justify-center items-center gap-2"
+          className="w-full bg-gradient-to-r from-blue-600 to-violet-650 hover:from-blue-550 hover:to-violet-600 text-white font-bold py-4 rounded-2xl shadow-xl transition-all duration-200 disabled:opacity-50 flex justify-center items-center gap-2 text-sm sm:text-base"
         >
           {fetchingPool ? (
             <>
-              <Loader2 size={20} class="animate-spin" />
+              <Loader2 size={20} className="animate-spin" />
               Preparing Question Pool...
             </>
           ) : (

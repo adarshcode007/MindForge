@@ -18,13 +18,46 @@ export default function Navbar() {
   ];
 
   return (
-    <nav class="glass sticky top-0 z-50 w-full px-6 py-4 shadow-lg flex justify-between items-center transition-all duration-300">
-      <Link to="/" class="flex items-center gap-2 text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 hover:opacity-90">
-        RECALL
-      </Link>
-      
-      {/* Navigation Links */}
-      <div class="flex items-center gap-2 sm:gap-6">
+    <>
+      {/* Desktop Top Navbar */}
+      <nav className="glass hidden md:flex sticky top-0 z-50 w-full px-8 py-4 shadow-lg justify-between items-center border-b border-darkBorder">
+        <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-500 hover:opacity-90 font-display">
+          RECALL
+        </Link>
+        
+        <div className="flex items-center gap-3">
+          {links.map((link) => {
+            const Icon = link.icon;
+            const isActive = location.pathname === link.to;
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border ${
+                  isActive
+                    ? 'bg-blue-600/10 text-blue-400 border-blue-500/25 shadow-md shadow-blue-950/20'
+                    : 'text-slate-400 border-transparent hover:text-slate-200 hover:bg-slate-900/40'
+                }`}
+              >
+                <Icon size={16} />
+                <span>{link.label}</span>
+              </Link>
+            );
+          })}
+
+          <button
+            onClick={logout}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-rose-400 hover:text-rose-350 hover:bg-rose-950/15 border border-transparent hover:border-rose-900/25 transition-all duration-200"
+            title="Log Out"
+          >
+            <LogOut size={16} />
+            <span>Log Out</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Bottom Tabbar */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-darkCard/90 backdrop-blur-md border-t border-darkBorder flex justify-around items-center px-2 py-2 shadow-2xl">
         {links.map((link) => {
           const Icon = link.icon;
           const isActive = location.pathname === link.to;
@@ -32,28 +65,18 @@ export default function Navbar() {
             <Link
               key={link.to}
               to={link.to}
-              class={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-3 rounded-xl transition-all duration-150 ${
                 isActive
-                  ? 'bg-indigo-600/30 text-indigo-300 border border-indigo-500/20'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/30'
+                  ? 'text-blue-400 font-bold'
+                  : 'text-slate-500 hover:text-slate-350'
               }`}
             >
-              <Icon size={16} />
-              <span class="hidden md:inline">{link.label}</span>
+              <Icon size={20} className={`transition-transform ${isActive ? 'scale-110' : ''}`} />
+              <span className="text-[9px] mt-1 font-semibold tracking-wide uppercase">{link.label.split(' ')[0]}</span>
             </Link>
           );
         })}
-
-        {/* Log Out Button */}
-        <button
-          onClick={logout}
-          class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-950/20 border border-transparent hover:border-red-900/30 transition-all duration-200"
-          title="Log Out"
-        >
-          <LogOut size={16} />
-          <span class="hidden md:inline">Log Out</span>
-        </button>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }

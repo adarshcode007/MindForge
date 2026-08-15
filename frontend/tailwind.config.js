@@ -7,12 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkBg: '#0f172a',      // slate 900
-        darkCard: '#1e293b',    // slate 800
-        darkBorder: '#334155',  // slate 700
+        darkBg: '#05070f',      // Midnight obsidian
+        darkCard: '#0c0f1d',    // Deep cobalt card
+        darkBorder: '#1c233d',  // Cobalt slate border
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        display: ['"Space Grotesque"', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-out',

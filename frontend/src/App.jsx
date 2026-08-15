@@ -17,12 +17,12 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div class="min-h-screen bg-darkBg text-slate-100 flex flex-col">
+        <div className="min-h-screen bg-darkBg text-slate-100 flex flex-col">
           {/* Global Header Navigation */}
           <Navbar />
           
           {/* Main Routing Container */}
-          <main class="flex-grow pb-16">
+          <main className="flex-grow pb-24 md:pb-16">
             <Routes>
               {/* Unauthenticated routes */}
               <Route path="/login" element={<Login />} />

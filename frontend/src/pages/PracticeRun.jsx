@@ -233,43 +233,43 @@ export default function PracticeRun() {
   if (sessionEnd) {
     const accuracy = questionCount > 0 ? Math.round((correctCount / questionCount) * 100) : 0;
     return (
-      <div class="max-w-2xl mx-auto px-4 py-12 animate-fade-in text-center">
-        <div class="glass p-8 rounded-3xl border border-slate-700/50 shadow-2xl relative overflow-hidden">
-          <div class="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-indigo-500/10 blur-3xl"></div>
+      <div className="max-w-2xl mx-auto px-4 py-8 sm:py-12 animate-fade-in text-center pb-24">
+        <div className="glass p-6 sm:p-8 rounded-3xl border border-darkBorder shadow-2xl relative overflow-hidden">
+          <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-500/10 blur-3xl"></div>
           
-          <div class="p-4 bg-indigo-600/20 border border-indigo-500/35 rounded-full text-indigo-400 w-fit mx-auto mb-6">
-            <Award size={48} class="animate-bounce" />
+          <div className="p-4 bg-blue-600/15 border border-blue-500/25 rounded-full text-blue-400 w-fit mx-auto mb-6 shadow-inner">
+            <Award size={48} className="animate-bounce" />
           </div>
 
-          <h1 class="text-3xl font-extrabold text-slate-100 tracking-tight mb-2">
-            Practice Session Completed!
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight mb-2 font-display">
+            Practice Session Completed
           </h1>
-          <p class="text-slate-400 text-sm mb-8">
-            Here is a breakdown of your performance.
+          <p className="text-slate-400 text-xs sm:text-sm mb-8">
+            Here is a breakdown of your active loop metrics.
           </p>
 
-          <div class="grid grid-cols-2 gap-4 mb-8">
-            <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl">
-              <div class="text-4xl font-black text-indigo-400">
-                {correctCount} <span class="text-lg font-medium text-slate-500">/ {questionCount}</span>
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="bg-slate-900/60 border border-slate-800/80 p-4 sm:p-5 rounded-2xl">
+              <div className="text-2xl sm:text-4xl font-extrabold text-blue-400 font-display">
+                {correctCount} <span className="text-xs sm:text-lg font-medium text-slate-500">/ {questionCount}</span>
               </div>
-              <div class="text-xs uppercase font-bold text-slate-500 tracking-wider mt-2">Score</div>
+              <div className="text-[10px] uppercase font-bold text-slate-500 tracking-wider mt-2">Score</div>
             </div>
-            <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl">
-              <div class="text-4xl font-black text-emerald-450">{accuracy}%</div>
-              <div class="text-xs uppercase font-bold text-slate-500 tracking-wider mt-2">Accuracy</div>
+            <div className="bg-slate-900/60 border border-slate-800/80 p-4 sm:p-5 rounded-2xl">
+              <div className="text-2xl sm:text-4xl font-extrabold text-emerald-450 font-display">{accuracy}%</div>
+              <div className="text-[10px] uppercase font-bold text-slate-500 tracking-wider mt-2">Accuracy</div>
             </div>
           </div>
 
           {/* Wrong tags summary */}
           {sessionWrongTags.size > 0 && (
-            <div class="text-left bg-slate-900/40 border border-slate-800/80 p-5 rounded-2xl mb-8">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+            <div className="text-left bg-slate-900/40 border border-slate-800/80 p-4 sm:p-5 rounded-2xl mb-8">
+              <h3 className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-3">
                 Needs Focus (Missed Topics)
               </h3>
-              <div class="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2">
                 {Array.from(sessionWrongTags).map((tag) => (
-                  <span key={tag} class="bg-red-950/20 text-red-400 border border-red-900/35 px-2.5 py-1 rounded-lg text-xs font-semibold">
+                  <span key={tag} className="bg-rose-950/20 text-rose-455 border border-rose-900/25 px-2.5 py-1 rounded-lg text-xs font-semibold">
                     #{tag}
                   </span>
                 ))}
@@ -278,7 +278,7 @@ export default function PracticeRun() {
           )}
 
           {/* Quick Buttons */}
-          <div class="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={() => {
                 setPool(initialPool);
@@ -289,16 +289,16 @@ export default function PracticeRun() {
                 setTimeLeft(180);
                 loadNextQuestion([], initialPool);
               }}
-              class="flex-1 bg-gradient-to-r from-indigo-650 to-purple-650 hover:from-indigo-600 hover:to-purple-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all duration-200 flex justify-center items-center gap-2"
+              className="flex-1 bg-gradient-to-r from-blue-600 to-violet-650 hover:from-blue-550 hover:to-violet-600 text-white font-bold py-3 sm:py-3.5 rounded-xl shadow-lg transition-all duration-200 flex justify-center items-center gap-2 text-xs sm:text-sm"
             >
-              <RefreshCw size={18} />
+              <RefreshCw size={16} />
               Practice Again
             </button>
             <button
               onClick={() => navigate('/')}
-              class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-350 font-bold py-3.5 rounded-xl border border-slate-700/50 transition-all duration-200 flex justify-center items-center gap-2"
+              className="flex-1 bg-slate-800 hover:bg-slate-750 text-slate-350 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-700 transition-all duration-200 flex justify-center items-center gap-2 text-xs sm:text-sm"
             >
-              <HomeIcon size={18} />
+              <HomeIcon size={16} />
               Back to Decks
             </button>
           </div>
@@ -312,34 +312,34 @@ export default function PracticeRun() {
   const showNextButton = isAnswered && !showConfidencePrompt && !submittingAnswer;
 
   return (
-    <div class="max-w-3xl mx-auto px-4 py-8 animate-fade-in">
+    <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in pb-24">
       
       {/* Session Progress Header */}
-      <div class="flex justify-between items-center mb-6 bg-slate-900/40 border border-slate-800 p-4 rounded-2xl">
-        <div class="flex items-center gap-4">
-          <div class="text-sm font-semibold text-slate-400">
+      <div className="flex justify-between items-center mb-6 bg-slate-900/40 border border-darkBorder p-4 rounded-2xl">
+        <div className="flex items-center gap-4">
+          <div className="text-xs sm:text-sm font-semibold text-slate-400">
             {mode === 'quick10' ? (
               <span>
-                Progress: <strong class="text-indigo-400 text-base">{questionCount + (isAnswered ? 0 : 0)}</strong> / 10
+                Progress: <strong className="text-blue-400 text-sm sm:text-base font-display">{questionCount}</strong> / 10
               </span>
             ) : (
               <span>
-                Attempted: <strong class="text-indigo-400 text-base">{questionCount}</strong>
+                Attempted: <strong className="text-blue-400 text-sm sm:text-base font-display">{questionCount}</strong>
               </span>
             )}
           </div>
           {mode !== 'quick10' && (
-            <div class="text-xs text-slate-500 border-l border-slate-800 pl-4">
-              Correct: <span class="text-emerald-400 font-semibold">{correctCount}</span>
+            <div className="text-xs text-slate-500 border-l border-slate-800 pl-4">
+              Correct: <span className="text-emerald-450 font-semibold">{correctCount}</span>
             </div>
           )}
         </div>
 
         {/* Timer / End Button */}
-        <div class="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           {mode === 'drill' && (
-            <div class="flex items-center gap-1.5 bg-indigo-950/20 border border-indigo-900/30 text-indigo-400 px-3 py-1.5 rounded-xl text-sm font-mono font-bold">
-              <Timer size={16} class="animate-pulse" />
+            <div className="flex items-center gap-1.5 bg-blue-950/20 border border-blue-900/30 text-blue-400 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-mono font-bold">
+              <Timer size={14} className="animate-pulse" />
               <span>{formatTime(timeLeft)}</span>
             </div>
           )}
@@ -347,7 +347,7 @@ export default function PracticeRun() {
           {mode !== 'quick10' && mode !== 'drill' && (
             <button
               onClick={handleEndSession}
-              class="text-xs font-semibold px-3 py-1.5 bg-slate-800/80 hover:bg-red-950/20 border border-slate-700 hover:border-red-900/30 text-slate-400 hover:text-red-400 rounded-xl transition-all duration-200"
+              className="text-[10px] sm:text-xs font-semibold px-3 py-1.5 bg-slate-800/80 hover:bg-rose-950/20 border border-slate-700 hover:border-rose-900/30 text-slate-400 hover:text-rose-400 rounded-xl transition-all duration-200"
             >
               End Session
             </button>
@@ -356,53 +356,51 @@ export default function PracticeRun() {
       </div>
 
       {/* Main Question Card */}
-      <div class="glass p-8 rounded-3xl border border-slate-700/50 shadow-2xl space-y-6 relative overflow-hidden">
+      <div className="glass p-5 sm:p-8 rounded-3xl border border-darkBorder shadow-2xl space-y-6 relative overflow-hidden">
         {/* Difficult Badge / Leech Tag */}
-        <div class="flex justify-between items-center">
-          <div class="flex gap-2">
-            <span class="bg-slate-900/80 text-slate-400 border border-slate-850 px-2.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wider">
+        <div className="flex justify-between items-center">
+          <div className="flex gap-2">
+            <span className="bg-slate-900/80 text-slate-400 border border-slate-850 px-2.5 py-1 rounded-lg text-[10px] font-semibold uppercase tracking-wider">
               {currentQuestion.difficulty || 'medium'}
             </span>
           </div>
 
           {isQuestionLeech && (
-            <span class="bg-rose-950/20 text-rose-450 border border-rose-900/30 px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 animate-pulse">
-              <ShieldAlert size={14} />
+            <span className="bg-rose-950/20 text-rose-450 border border-rose-900/30 px-2.5 py-1 rounded-lg text-[10px] font-semibold flex items-center gap-1.5 animate-pulse">
+              <ShieldAlert size={12} />
               Leech Card
             </span>
           )}
         </div>
 
         {/* Question Text */}
-        <div class="space-y-2">
-          <h2 class="text-2xl font-bold text-slate-100 leading-snug break-words">
+        <div className="space-y-2">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-100 leading-snug break-words">
             {currentQuestion.question}
           </h2>
         </div>
 
         {/* Shuffled Options Grid */}
-        <div class="space-y-3.5 pt-4">
+        <div className="space-y-3 pt-2">
           {shuffledOptions.map((opt, sIdx) => {
             const isSelected = selectedOptionIndex === opt.originalIndex;
             const isCorrectAnswer = opt.originalIndex === revealCorrectOption;
             const isWrongSelected = isSelected && revealCorrectOption !== null && revealCorrectOption !== opt.originalIndex;
 
-            let btnStyle = 'border-slate-800 bg-slate-900/40 text-slate-300 hover:bg-slate-850 hover:border-slate-700';
+            let btnStyle = 'border-slate-800 bg-slate-900/40 text-slate-355 hover:bg-slate-850 hover:border-slate-700';
             
             if (isAnswered) {
-              // Lock hover states
               btnStyle = 'border-slate-800/40 bg-slate-900/20 text-slate-500 opacity-60 cursor-not-allowed';
             }
 
             if (revealCorrectOption !== null) {
               if (isCorrectAnswer) {
-                btnStyle = 'border-emerald-500/40 bg-emerald-950/15 text-emerald-400 shadow-md shadow-emerald-950/10 font-medium';
+                btnStyle = 'border-emerald-500/35 bg-emerald-950/15 text-emerald-455 shadow-md font-medium';
               } else if (isWrongSelected) {
-                btnStyle = 'border-red-500/40 bg-red-950/15 text-red-400 font-medium';
+                btnStyle = 'border-rose-500/35 bg-rose-950/15 text-rose-455 font-medium';
               }
             } else if (isSelected && showConfidencePrompt) {
-              // Correct option selected but waiting for confidence score
-              btnStyle = 'border-indigo-500/60 bg-indigo-950/20 text-indigo-300 shadow-md shadow-indigo-950/10';
+              btnStyle = 'border-blue-500/50 bg-blue-950/25 text-blue-350 shadow-md';
             }
 
             return (
@@ -410,14 +408,14 @@ export default function PracticeRun() {
                 key={sIdx}
                 onClick={() => handleSelectOption(sIdx, opt.originalIndex)}
                 disabled={isAnswered}
-                class={`w-full text-left px-5 py-4 rounded-xl border text-sm transition-all duration-200 flex justify-between items-center ${btnStyle}`}
+                className={`w-full text-left px-4 sm:px-5 py-3 sm:py-4 rounded-xl border text-xs sm:text-sm transition-all duration-200 flex justify-between items-center gap-3 ${btnStyle}`}
               >
-                <span class="break-words pr-4">{opt.text}</span>
+                <span className="break-words flex-1 leading-normal">{opt.text}</span>
                 {revealCorrectOption !== null && isCorrectAnswer && (
-                  <CheckCircle size={16} class="text-emerald-400 flex-shrink-0" />
+                  <CheckCircle size={16} className="text-emerald-400 flex-shrink-0" />
                 )}
                 {revealCorrectOption !== null && isWrongSelected && (
-                  <XCircle size={16} class="text-red-400 flex-shrink-0" />
+                  <XCircle size={16} className="text-rose-400 flex-shrink-0" />
                 )}
               </button>
             );
@@ -426,21 +424,21 @@ export default function PracticeRun() {
 
         {/* Confidence Prompt */}
         {showConfidencePrompt && (
-          <div class="bg-indigo-950/10 border border-indigo-500/25 p-5 rounded-2xl space-y-4 animate-slide-up">
-            <div class="text-center">
-              <h4 class="text-sm font-bold text-indigo-350">Correct! Rate your confidence:</h4>
-              <p class="text-xs text-slate-500 mt-1">This adjusts the frequency this question will reappear.</p>
+          <div className="bg-blue-955/10 border border-blue-500/25 p-4 sm:p-5 rounded-2xl space-y-4 animate-slide-up">
+            <div className="text-center">
+              <h4 className="text-xs sm:text-sm font-bold text-blue-350">Correct! Rate your confidence:</h4>
+              <p className="text-[10px] text-slate-505 mt-1">This adjusts the frequency this question will reappear.</p>
             </div>
-            <div class="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => handleConfidenceSelection('knew_it')}
-                class="flex-1 bg-indigo-650 hover:bg-indigo-600 text-white font-semibold py-2.5 rounded-lg text-sm shadow-md transition-all duration-200"
+                className="flex-1 bg-blue-600 hover:bg-blue-550 text-white font-semibold py-2.5 rounded-lg text-xs sm:text-sm shadow-md transition-all duration-200"
               >
                 Knew It (Halves Weight)
               </button>
               <button
                 onClick={() => handleConfidenceSelection('guessed')}
-                class="flex-1 bg-slate-805 hover:bg-slate-700 text-slate-300 font-semibold py-2.5 rounded-lg text-sm transition-all duration-200 border border-slate-700/50"
+                className="flex-1 bg-slate-800 hover:bg-slate-750 text-slate-350 font-semibold py-2.5 rounded-lg text-xs sm:text-sm transition-all duration-200 border border-slate-700"
               >
                 Guessed (Keep Weight)
               </button>
@@ -450,16 +448,16 @@ export default function PracticeRun() {
 
         {/* Explanation / Description Box */}
         {revealCorrectOption !== null && currentQuestion.description && (
-          <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl text-xs leading-relaxed text-slate-400 space-y-2 animate-slide-up">
-            <span class="font-bold text-slate-300 text-[11px] uppercase tracking-wider block">Explanation</span>
-            <p class="break-words">{currentQuestion.description}</p>
+          <div className="bg-slate-900/60 border border-slate-800 p-4 sm:p-5 rounded-2xl text-[11px] sm:text-xs leading-relaxed text-slate-400 space-y-2 animate-slide-up">
+            <span className="font-bold text-slate-300 text-[10px] uppercase tracking-wider block">Explanation</span>
+            <p className="break-words leading-relaxed">{currentQuestion.description}</p>
           </div>
         )}
 
         {/* Leech Flag Update in run */}
         {revealCorrectOption !== null && isQuestionLeech && (
-          <div class="bg-rose-950/10 border border-rose-900/20 text-rose-450 p-4 rounded-xl text-xs leading-normal flex gap-2 items-start animate-slide-up">
-            <ShieldAlert size={14} class="flex-shrink-0 mt-0.5" />
+          <div className="bg-rose-955/10 border border-rose-900/20 text-rose-455 p-4 rounded-xl text-[11px] leading-normal flex gap-2 items-start animate-slide-up">
+            <ShieldAlert size={14} className="flex-shrink-0 mt-0.5" />
             <span>
               This question has been answered wrong consecutively. It will surface more frequently.
             </span>
@@ -470,7 +468,7 @@ export default function PracticeRun() {
         {showNextButton && (
           <button
             onClick={handleNext}
-            class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold py-3.5 rounded-xl border border-slate-700 flex justify-center items-center gap-2 transition-all duration-200 shadow-md animate-slide-up"
+            className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 font-semibold py-3.5 rounded-xl border border-slate-700 flex justify-center items-center gap-2 transition-all duration-200 shadow-md animate-slide-up text-xs sm:text-sm"
           >
             <span>Next Question</span>
             <ArrowRight size={16} />

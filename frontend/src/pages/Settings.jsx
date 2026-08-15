@@ -132,58 +132,58 @@ export default function Settings() {
 
   if (loading) {
     return (
-      <div class="flex flex-col items-center justify-center min-h-[60vh]">
-        <Loader2 size={40} class="text-indigo-500 animate-spin" />
-        <span class="text-slate-400 mt-4 font-medium">Loading settings...</span>
+      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <Loader2 size={40} className="text-blue-500 animate-spin" />
+        <span className="text-slate-400 mt-4 font-medium">Loading settings...</span>
       </div>
     );
   }
 
   return (
-    <div class="max-w-4xl mx-auto px-4 py-8 animate-fade-in space-y-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in space-y-8 pb-24">
       {/* Header */}
       <div>
-        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-slate-350 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-slate-205 to-slate-350 tracking-tight font-display">
           System Settings
         </h1>
-        <p class="text-slate-400 mt-2">
+        <p className="text-slate-400 mt-2 text-xs sm:text-sm">
           Manage database backups, deck metadata, and user access.
         </p>
       </div>
 
       {error && (
-        <div class="bg-red-950/20 border border-red-900/30 text-red-400 px-4 py-3 rounded-lg animate-slide-up flex items-center gap-2">
-          <ShieldAlert size={18} />
+        <div className="bg-red-950/20 border border-red-900/30 text-red-400 px-4 py-3 rounded-lg mb-8 animate-slide-up flex items-center gap-2 text-xs sm:text-sm">
+          <ShieldAlert size={18} className="flex-shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       {success && (
-        <div class="bg-emerald-950/20 border border-emerald-900/30 text-emerald-400 px-4 py-3 rounded-lg animate-slide-up flex items-center gap-2">
-          <CheckCircle2 size={18} />
+        <div className="bg-emerald-950/20 border border-emerald-900/30 text-emerald-450 px-4 py-3 rounded-lg mb-8 animate-slide-up flex items-center gap-2 text-xs sm:text-sm">
+          <CheckCircle2 size={18} className="flex-shrink-0" />
           <span>{success}</span>
         </div>
       )}
 
       {/* Backup and Restore Row */}
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         
         {/* Export Backup panel */}
-        <div class="glass p-6 rounded-2xl border border-slate-700/50 space-y-4">
-          <h3 class="text-lg font-bold text-slate-200 flex items-center gap-2">
-            <Download size={18} class="text-indigo-400" />
-            Export Database Backup
+        <div className="glass p-6 rounded-2xl border border-darkBorder space-y-4">
+          <h3 className="text-base sm:text-lg font-bold text-slate-200 flex items-center gap-2 font-display">
+            <Download size={18} className="text-blue-400" />
+            Export Archive Backup
           </h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <p className="text-slate-455 text-xs leading-relaxed">
             Download a full backup file containing all of your decks, practice logs, question cards, and calculated weights.
           </p>
           <button
             onClick={handleExportBackup}
             disabled={actionLoading === 'export'}
-            class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold py-2.5 rounded-xl border border-slate-750 flex justify-center items-center gap-2 transition-all duration-200"
+            className="w-full bg-slate-800 hover:bg-slate-750 text-slate-200 font-semibold py-2.5 rounded-xl border border-slate-700 flex justify-center items-center gap-2 transition-all duration-200 text-xs sm:text-sm"
           >
             {actionLoading === 'export' ? (
-              <Loader2 size={16} class="animate-spin" />
+              <Loader2 size={16} className="animate-spin" />
             ) : (
               <Download size={16} />
             )}
@@ -192,25 +192,25 @@ export default function Settings() {
         </div>
 
         {/* Import Backup panel */}
-        <div class="glass p-6 rounded-2xl border border-slate-700/50 space-y-4">
-          <h3 class="text-lg font-bold text-slate-200 flex items-center gap-2">
-            <Upload size={18} class="text-indigo-400" />
-            Import Database Backup
+        <div className="glass p-6 rounded-2xl border border-darkBorder space-y-4">
+          <h3 className="text-base sm:text-lg font-bold text-slate-200 flex items-center gap-2 font-display">
+            <Upload size={18} className="text-blue-400" />
+            Import Archive Backup
           </h3>
-          <p class="text-slate-450 text-[11px] leading-relaxed block">
-            Paste database JSON content. <strong class="text-red-400">WARNING:</strong> This will replace all current data.
+          <p className="text-slate-450 text-[11px] leading-relaxed block">
+            Paste database JSON content. <strong className="text-red-405 font-bold">WARNING:</strong> This will replace all current data.
           </p>
           <textarea
             value={backupText}
             onChange={(e) => setBackupText(e.target.value)}
             placeholder='Paste exported JSON string here...'
             rows={3}
-            class="w-full bg-slate-900/60 border border-slate-700 text-slate-100 p-3 rounded-lg outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 font-mono text-xs leading-relaxed transition-all duration-200 resize-none no-scrollbar"
+            className="w-full bg-slate-900/60 border border-slate-700 text-slate-100 p-3 rounded-lg outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono text-[10px] sm:text-xs leading-relaxed transition-all duration-200 resize-none no-scrollbar"
           />
           <button
             onClick={() => setConfirmImportBackup(true)}
             disabled={actionLoading === 'import' || !backupText.trim()}
-            class="w-full bg-gradient-to-r from-indigo-650 to-purple-650 hover:from-indigo-600 hover:to-purple-600 text-white font-semibold py-2.5 rounded-xl shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-blue-600 to-violet-650 hover:from-blue-550 hover:to-violet-600 text-white font-semibold py-2.5 rounded-xl shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
           >
             Restore JSON Backup
           </button>
@@ -218,32 +218,32 @@ export default function Settings() {
       </div>
 
       {/* Decks Management */}
-      <div class="glass p-6 rounded-2xl border border-slate-700/50 space-y-6">
-        <h3 class="text-lg font-bold text-slate-200">Deck Configuration</h3>
+      <div className="glass p-6 rounded-2xl border border-darkBorder space-y-6">
+        <h3 className="text-base sm:text-lg font-bold text-slate-200 font-display">Deck Configuration</h3>
         
         {decks.length === 0 ? (
-          <p class="text-slate-400 text-sm">No decks found. Go create one!</p>
+          <p className="text-slate-450 text-sm">No decks found. Go create one!</p>
         ) : (
-          <div class="overflow-hidden border border-slate-800 rounded-xl divide-y divide-slate-800 bg-slate-900/20">
+          <div className="overflow-hidden border border-slate-850 rounded-xl divide-y divide-slate-855 bg-slate-900/10">
             {decks.map(deck => (
-              <div key={deck.id} class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-4 transition-all hover:bg-slate-800/10">
-                <div class="flex items-center gap-3">
-                  <span class="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: deck.color }}></span>
-                  <div class="min-w-0">
-                    <h4 class="font-bold text-slate-200 truncate">{deck.name}</h4>
-                    <p class="text-slate-500 text-xs mt-0.5">{deck.questionCount} questions</p>
+              <div key={deck.id} className="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-4 transition-all hover:bg-slate-900/30">
+                <div className="flex items-center gap-3">
+                  <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: deck.color }}></span>
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-slate-200 truncate text-sm sm:text-base">{deck.name}</h4>
+                    <p className="text-slate-500 text-xs mt-0.5">{deck.questionCount} questions</p>
                   </div>
                 </div>
 
-                <div class="flex items-center gap-2">
+                <div className="flex className-center gap-2">
                   {/* Reset stats */}
                   <button
                     onClick={() => setConfirmResetDeck(deck)}
                     disabled={actionLoading === deck.id}
-                    class="p-2 bg-slate-800 hover:bg-slate-750 text-slate-350 hover:text-indigo-400 border border-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all"
+                    className="p-2 bg-slate-800 hover:bg-slate-750 text-slate-350 hover:text-blue-400 border border-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all"
                     title="Reset weight statistics for this deck"
                   >
-                    <RefreshCw size={14} class={actionLoading === deck.id ? 'animate-spin' : ''} />
+                    <RefreshCw size={14} className={actionLoading === deck.id ? 'animate-spin' : ''} />
                     Reset Weights
                   </button>
 
@@ -251,7 +251,7 @@ export default function Settings() {
                   <button
                     onClick={() => setConfirmDeleteDeck(deck)}
                     disabled={actionLoading === deck.id}
-                    class="p-2 bg-red-950/25 hover:bg-red-900/20 text-red-400 border border-red-900/35 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all"
+                    className="p-2 bg-rose-955/20 hover:bg-rose-900/20 text-rose-400 border border-rose-900/30 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all"
                     title="Delete deck and its questions permanently"
                   >
                     <Trash2 size={14} />
@@ -265,13 +265,13 @@ export default function Settings() {
       </div>
 
       {/* Log out section */}
-      <div class="flex justify-end pt-4">
+      <div className="flex justify-end pt-4">
         <button
           onClick={logout}
-          class="bg-red-950/20 border border-red-900/30 text-red-400 px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-red-900/20 hover:border-red-500/40 transition-all duration-200 shadow-md"
+          className="bg-rose-950/20 border border-rose-900/30 text-rose-400 px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-rose-900/20 hover:border-rose-500/40 transition-all duration-200 shadow-md text-xs sm:text-sm"
         >
           <LogOut size={16} />
-          Sign Out of Account
+          Sign Out of Archive
         </button>
       </div>
 
@@ -281,25 +281,25 @@ export default function Settings() {
       
       {/* Confirm Import Backup */}
       {confirmImportBackup && (
-        <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div class="glass max-w-md w-full p-6 rounded-2xl border border-red-500/20 shadow-2xl space-y-6 animate-scale-in">
-            <div class="flex items-center gap-3 text-red-400 border-b border-slate-800 pb-4">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="glass max-w-md w-full p-6 rounded-2xl border border-rose-500/20 shadow-2xl space-y-6 animate-scale-in">
+            <div className="flex items-center gap-3 text-rose-455 border-b border-slate-850 pb-4">
               <ShieldAlert size={24} />
-              <h3 class="text-lg font-bold">Confirm Database Overwrite</h3>
+              <h3 className="text-lg font-bold font-display">Confirm Overwrite</h3>
             </div>
-            <p class="text-slate-350 text-sm leading-relaxed">
+            <p className="text-slate-355 text-xs sm:text-sm leading-relaxed">
               This action is destructive and irreversible. It will wipe out all existing decks, question cards, stats, and historical logs, replacing them with the backup data.
             </p>
-            <div class="flex gap-4 border-t border-slate-800 pt-4">
+            <div className="flex gap-4 border-t border-slate-850 pt-4">
               <button
                 onClick={handleImportBackup}
-                class="flex-1 bg-red-650 hover:bg-red-600 text-white font-semibold py-2.5 rounded-lg text-sm transition-all"
+                className="flex-1 bg-rose-600 hover:bg-rose-550 text-white font-semibold py-2.5 rounded-lg text-xs sm:text-sm transition-all"
               >
-                Yes, Overwrite & Restore
+                Overwrite & Restore
               </button>
               <button
                 onClick={() => setConfirmImportBackup(false)}
-                class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-2.5 rounded-lg text-sm transition-all"
+                className="flex-1 bg-slate-800 hover:bg-slate-750 text-slate-300 font-semibold py-2.5 rounded-lg text-xs sm:text-sm transition-all"
               >
                 Cancel
               </button>
@@ -310,25 +310,25 @@ export default function Settings() {
 
       {/* Confirm Reset Stats */}
       {confirmResetDeck && (
-        <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div class="glass max-w-md w-full p-6 rounded-2xl border border-slate-800 shadow-2xl space-y-6">
-            <div class="flex items-center gap-3 text-slate-200 border-b border-slate-850 pb-4">
-              <RefreshCw size={20} class="text-indigo-400" />
-              <h3 class="text-lg font-bold">Reset Weights</h3>
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="glass max-w-md w-full p-6 rounded-2xl border border-darkBorder shadow-2xl space-y-6 animate-scale-in">
+            <div className="flex items-center gap-3 text-slate-200 border-b border-slate-855 pb-4">
+              <RefreshCw size={20} className="text-blue-405 animate-spin" />
+              <h3 className="text-lg font-bold font-display">Reset Weights</h3>
             </div>
-            <p class="text-slate-350 text-sm leading-relaxed">
-              Are you sure you want to reset all learning statistics (weights, times wrong, etc.) back to default values for the deck <strong class="text-indigo-350">"{confirmResetDeck.name}"</strong>?
+            <p className="text-slate-355 text-xs sm:text-sm leading-relaxed">
+              Are you sure you want to reset all learning statistics (weights, times wrong, etc.) back to default values for the deck <strong className="text-blue-400">"{confirmResetDeck.name}"</strong>?
             </p>
-            <div class="flex gap-4 border-t border-slate-800 pt-4">
+            <div className="flex gap-4 border-t border-slate-855 pt-4">
               <button
                 onClick={() => handleResetDeckStats(confirmResetDeck.id)}
-                class="flex-1 bg-indigo-650 hover:bg-indigo-600 text-white font-semibold py-2.5 rounded-lg text-sm transition-all"
+                className="flex-1 bg-blue-600 hover:bg-blue-555 text-white font-semibold py-2.5 rounded-lg text-xs sm:text-sm transition-all"
               >
                 Reset Weights
               </button>
               <button
                 onClick={() => setConfirmResetDeck(null)}
-                class="flex-1 bg-slate-850 hover:bg-slate-750 text-slate-300 font-semibold py-2.5 rounded-lg text-sm transition-all"
+                className="flex-1 bg-slate-800 hover:bg-slate-750 text-slate-350 font-semibold py-2.5 rounded-lg text-xs sm:text-sm transition-all"
               >
                 Cancel
               </button>
@@ -339,25 +339,25 @@ export default function Settings() {
 
       {/* Confirm Delete Deck */}
       {confirmDeleteDeck && (
-        <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div class="glass max-w-md w-full p-6 rounded-2xl border border-red-500/20 shadow-2xl space-y-6">
-            <div class="flex items-center gap-3 text-red-400 border-b border-slate-800 pb-4">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="glass max-w-md w-full p-6 rounded-2xl border border-rose-500/20 shadow-2xl space-y-6 animate-scale-in">
+            <div className="flex items-center gap-3 text-rose-455 border-b border-slate-850 pb-4">
               <Trash2 size={20} />
-              <h3 class="text-lg font-bold">Delete Deck</h3>
+              <h3 className="text-lg font-bold font-display">Delete Deck</h3>
             </div>
-            <p class="text-slate-350 text-sm leading-relaxed">
-              Are you sure you want to delete the deck <strong class="text-indigo-350">"{confirmDeleteDeck.name}"</strong> and all of its question cards? This operation is permanent.
+            <p className="text-slate-355 text-xs sm:text-sm leading-relaxed">
+              Are you sure you want to delete the deck <strong className="text-blue-400">"{confirmDeleteDeck.name}"</strong> and all of its question cards? This operation is permanent.
             </p>
-            <div class="flex gap-4 border-t border-slate-800 pt-4">
+            <div className="flex gap-4 border-t border-slate-855 pt-4">
               <button
                 onClick={() => handleDeleteDeck(confirmDeleteDeck.id)}
-                class="flex-1 bg-red-650 hover:bg-red-600 text-white font-semibold py-2.5 rounded-lg text-sm transition-all"
+                className="flex-1 bg-rose-600 hover:bg-rose-555 text-white font-semibold py-2.5 rounded-lg text-xs sm:text-sm transition-all"
               >
                 Delete Deck
               </button>
               <button
                 onClick={() => setConfirmDeleteDeck(null)}
-                class="flex-1 bg-slate-800 hover:bg-slate-750 text-slate-300 font-semibold py-2.5 rounded-lg text-sm transition-all"
+                className="flex-1 bg-slate-800 hover:bg-slate-750 text-slate-350 font-semibold py-2.5 rounded-lg text-xs sm:text-sm transition-all"
               >
                 Cancel
               </button>

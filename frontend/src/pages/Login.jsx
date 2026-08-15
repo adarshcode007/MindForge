@@ -35,27 +35,27 @@ export default function Login() {
   };
 
   return (
-    <div class="min-h-[80vh] flex flex-col justify-center items-center px-4 animate-fade-in">
-      <div class="glass max-w-md w-full p-8 rounded-2xl shadow-2xl relative overflow-hidden border border-slate-700/50">
+    <div className="min-h-[80vh] flex flex-col justify-center items-center px-4 animate-fade-in">
+      <div className="glass max-w-md w-full p-8 rounded-2xl shadow-2xl relative overflow-hidden border border-darkBorder">
         {/* Accent Glow */}
-        <div class="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-indigo-500/20 blur-3xl"></div>
-        <div class="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-purple-500/20 blur-3xl"></div>
+        <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-violet-500/10 blur-3xl"></div>
 
-        <div class="flex flex-col items-center mb-8 relative z-10">
-          <div class="p-4 bg-indigo-600/20 border border-indigo-500/30 rounded-full text-indigo-400 mb-4 shadow-inner">
-            <KeyRound size={32} class="animate-pulse" />
+        <div className="flex flex-col items-center mb-8 relative z-10">
+          <div className="p-4 bg-blue-600/15 border border-blue-500/25 rounded-full text-blue-400 mb-4 shadow-inner">
+            <KeyRound size={32} className="animate-pulse" />
           </div>
-          <h1 class="text-3xl font-extrabold text-slate-100 tracking-tight text-center">
-            Recall Quiz Creator
+          <h1 className="text-3xl font-extrabold text-slate-100 tracking-tight text-center font-display">
+            Recall Archive
           </h1>
-          <p class="text-slate-400 text-sm text-center mt-2">
+          <p className="text-slate-400 text-xs sm:text-sm text-center mt-2">
             Enter your passcode to unlock weighted-practice decks.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} class="space-y-6 relative z-10">
+        <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
           <div>
-            <label class="block text-slate-350 text-sm font-medium mb-2" htmlFor="passcode">
+            <label className="block text-slate-350 text-xs font-medium uppercase tracking-wide mb-2" htmlFor="passcode">
               Passcode
             </label>
             <input
@@ -64,14 +64,14 @@ export default function Login() {
               value={passcode}
               onChange={(e) => setPasscode(e.target.value)}
               placeholder="••••••••"
-              class="w-full bg-slate-900/60 border border-slate-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-100 px-4 py-3 rounded-lg outline-none transition-all duration-200"
+              className="w-full bg-slate-900/60 border border-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-slate-100 px-4 py-3 rounded-lg outline-none transition-all duration-200 text-sm"
               disabled={submitting}
               autoFocus
             />
           </div>
 
           {error && (
-            <div class="text-red-400 text-sm bg-red-950/20 border border-red-900/30 px-4 py-2.5 rounded-lg animate-slide-up">
+            <div className="text-red-400 text-xs bg-red-950/20 border border-red-900/30 px-4 py-2.5 rounded-lg animate-slide-up leading-relaxed">
               {error}
             </div>
           )}
@@ -79,9 +79,9 @@ export default function Login() {
           <button
             type="submit"
             disabled={submitting || !passcode}
-            class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium py-3 rounded-lg shadow-lg hover:shadow-indigo-500/10 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-blue-600 to-violet-650 hover:from-blue-550 hover:to-violet-600 text-white font-medium py-3 rounded-lg shadow-lg shadow-blue-950/20 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
           >
-            {submitting ? 'Verifying...' : 'Unlock Account'}
+            {submitting ? 'Verifying...' : 'Unlock Archive'}
           </button>
         </form>
       </div>
